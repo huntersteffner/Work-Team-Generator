@@ -76,7 +76,20 @@ const internQuestions = [
         message: 'What school is this intern currently attending?'
     }
 ]
-const team = []
+listOfCards = ''
+
+const cardTemplate = function({name,id,email,special}) {
+    `<div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5>${name}</h5>
+      <ul class="list-group mg-2">
+        <li class="list-group-item">${id}</li>
+        <li class="list-group-item">${email}</li>
+        <li class="list-group-item">${special}</li>
+      </ul>
+    </div>
+  </div>`
+}
 
 
 const newEmployeeQuestion = function() {
@@ -136,31 +149,17 @@ inquirer
     .then(function(data) {
         const manager = new Manager(data.employeeName,data.employeeID, data.employeeEmail,data.officeNumber)
         console.log(manager)
-        team.push(manager)
+        console.log(manager.name, manager.id,manager.email,manager.officeNumber)
+        console.log(cardTemplate(manager.name, manager.id,manager.email,manager.officeNumber))
+        // console.log(listOfCards)
+        
 
 
         newEmployeeQuestion()
-        // inquirer
-        // .prompt(employeeSelect).then(function(data) {
-        //     if(data.employeeType === 'Engineer') {
-        //         inquirer.prompt(engineerQuestions).then(function(data) {
-                    
-        //             // console.log(data)
-        //             console.log('Team: ' + team)
-        //         })
-        //     } else {
-        //         console.log('It\'s an intern.')
-        //     }
-        //     // console.log(data)
-        // })
+        
     })
 
-// const one = 'yes'
-// const two = 'no'
-// const three = 'si'
-// const four = 'nein'
 
-// const manager = new Manager(one,two,three,four)
 
 // console.log(manager)
 
