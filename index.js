@@ -3,6 +3,8 @@ const Manager = require('./lib/manager')
 const Engineer = require('./lib/engineer')
 const Intern = require('./lib/intern')
 
+const fs = require('fs')
+
 const managerQuestions = [
     {
         type: 'input',
@@ -91,6 +93,51 @@ const cardTemplate = function(name,id,email,unique,image) {
   </div>`
 }
 
+const htmlTemplate = function(listOfCards) {
+    return `<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>HTML 5 Boilerplate</title>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+          crossorigin="anonymous"
+        />
+        <style>
+            .jumbotron {
+                margin: 0;
+            }
+            .space {
+                margin: 1rem;
+            }
+        </style>
+      </head>
+      <body>
+        <div class="jumbotron bg-success">
+          <h1 class="text-center">Your Team!</h1>
+        </div>
+        <div class="container-fluid d-flex m-0 bg-light">
+          ${listOfCards}
+        </div>
+    
+        <script src="index.js"></script>
+      </body>
+    </html>
+    `
+}
+
+const createFile = function() {
+    console.log('Writing file...')
+    const completeHTML = htmlTemplate(listOfCards)
+    fs.writeFile('new.html', completeHTML, (err) => {
+        if(err) {console.error(err)} else {console.log('File Written')}
+    })
+}
+
 
 const newEmployeeQuestion = function() {
     inquirer.prompt([
@@ -123,6 +170,8 @@ const newEmployeeQuestion = function() {
                     
                 })
                 // newEmployeeQuestion()
+        } else {
+            createFile()
         }
     })
 }
