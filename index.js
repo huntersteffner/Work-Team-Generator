@@ -1,5 +1,4 @@
 const inquirer = require('inquirer')
-const Employee = require('./lib/employee')
 const Manager = require('./lib/manager')
 const Engineer = require('./lib/engineer')
 const Intern = require('./lib/intern')
@@ -78,14 +77,15 @@ const internQuestions = [
 ]
 listOfCards = ''
 
-const cardTemplate = function({name,id,email,special}) {
-    `<div class="card" style="width: 18rem">
+const cardTemplate = function(name,id,email,unique,image) {
+     return `<div class="card" style="width: 18rem">
+     <img src="${image}" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5>${name}</h5>
       <ul class="list-group mg-2">
         <li class="list-group-item">${id}</li>
         <li class="list-group-item">${email}</li>
-        <li class="list-group-item">${special}</li>
+        <li class="list-group-item">${unique}</li>
       </ul>
     </div>
   </div>`
@@ -130,8 +130,13 @@ const addNewEngineer = function() {
     inquirer
     .prompt(engineerQuestions)
     .then(function(data) {
-        console.log(data)
+        // console.log(data)
+        const engineer = new Engineer(data.employeeName,data.employeeID,data.employeeEmail,data.github)
+        console.log(engineer)
+        listOfCards += cardTemplate(engineer.getName(), engineer.getId(),engineer.getEmail(),engineer.getGithub(),engineer.getImage())
+        console.log(listOfCards)
 
+        
         newEmployeeQuestion()
     })
 }
@@ -139,7 +144,10 @@ const addNewIntern = function() {
     inquirer
     .prompt(internQuestions)
     .then(function(data) {
-        console.log(data)
+        const intern = new Intern(data.employeeName,data.employeeID,data.employeeEmail,data.school)
+        listOfCards += cardTemplate(intern.getName(), intern.getId(),intern.getEmail(),intern.getSchool(),intern.getImage())
+        console.log(listOfCards)
+
         newEmployeeQuestion()
     })
 }
@@ -148,10 +156,9 @@ inquirer
     .prompt(managerQuestions)
     .then(function(data) {
         const manager = new Manager(data.employeeName,data.employeeID, data.employeeEmail,data.officeNumber)
-        console.log(manager)
-        console.log(manager.name, manager.id,manager.email,manager.officeNumber)
-        console.log(cardTemplate(manager.name, manager.id,manager.email,manager.officeNumber))
-        // console.log(listOfCards)
+
+        listOfCards += cardTemplate(manager.getName(), manager.getId(),manager.getEmail(),manager.getOffice(),manager.getImage())
+        console.log(listOfCards)
         
 
 
