@@ -18,7 +18,7 @@ This program was designed with with managers in mind who want to be able to quic
 
 This program requires Node.js and NPM. Once these are installed, please run:
 ```
-npm init -y
+npm i
 ```
 ## Usage
 
