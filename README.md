@@ -19,16 +19,14 @@ This program was designed with with managers in mind who want to be able to quic
 This program requires Node.js and NPM. Once these are installed, please run:
 ```
 npm init -y
-
-npm i inquirer
-
-npm i jest
 ```
 ## Usage
 
 For usage instructions, please do the following:
 
 Enter node index.js into your terminal. You will then be prompted with a series of questions, concerning the members of your team. There are three types of employees that can be added in: Manager, Engineer, and Intern. Once you answer each question for one team member, it will ask you if you would like to add another user. If you select yes, it will go through the previous steps again. If you select no, it will generate a file titled team.html, that can be viewed to see the list of teammates. Each type of employee has its own picture in the card to make differentiating them easy.
+
+A sample file of how this looks can be found in the Assets folder
 
 Generated HTML page
 ![Alt text](./Completed-File.png "Optional Title")
@@ -49,7 +47,7 @@ College Image https://unsplash.com/photos/s9CC2SKySJM
 
 For testing purposes, please do the following:
 ```
-Input npm run test
+npm run test
 ```
 ## Contribution
 
