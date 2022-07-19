@@ -49,7 +49,7 @@ College Image https://unsplash.com/photos/s9CC2SKySJM
 
 For testing purposes, please do the following:
 ```
-Input npm run test into your terminal
+Input npm run test
 ```
 ## Contribution
 
